@@ -1,0 +1,1268 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>sbuild - SBuild API Reference 0.7.2 - de.tototec.sbuild</title>
+          <meta name="description" content="sbuild - SBuild API Reference 0.7.2 - de.tototec.sbuild" />
+          <meta name="keywords" content="sbuild SBuild API Reference 0.7.2 de.tototec.sbuild" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'de.tototec.sbuild.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="de">de</a>.<a href="../package.html" class="extype" name="de.tototec">tototec</a></p>
+        <h1>sbuild</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sbuild</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><h3>SBuild API Reference</h3><p>This package contains SBuild core classes and public API.</p><p>Project Homepage: <a href="http://sbuild.tototec.de/" target="_blank">http://sbuild.tototec.de/</a></p><p>SBuild is released under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License, Version 2.0</a>.</p><h4>SBuild API to be used in SBuild build scripts</h4><p>The following classes form SBUild's public API:</p><ul><li><code><a href="classpath.html" class="extype" name="de.tototec.sbuild.classpath">@classpath</a></code></li><li><code><a href="ExportDependencies$.html" class="extype" name="de.tototec.sbuild.ExportDependencies">ExportDependencies</a></code></li><li><code><a href="include.html" class="extype" name="de.tototec.sbuild.include">@include</a></code></li><li><code><a href="Logger.html" class="extype" name="de.tototec.sbuild.Logger">Logger</a></code></li><li><code><a href="Module.html" class="extype" name="de.tototec.sbuild.Module">Module</a></code></li><li><code><a href="Modules$.html" class="extype" name="de.tototec.sbuild.Modules">Modules</a></code></li><li><code><a href="Path$.html" class="extype" name="de.tototec.sbuild.Path">Path</a></code></li><li><code><a href="Plugin.html" class="extype" name="de.tototec.sbuild.Plugin">Plugin</a></code></li><li><code><a href="Prop$.html" class="extype" name="de.tototec.sbuild.Prop">Prop</a></code></li><li><code><a href="SchemeHandler.html" class="extype" name="de.tototec.sbuild.SchemeHandler">SchemeHandler</a></code></li><li><code><a href="SchemeResolver.html" class="extype" name="de.tototec.sbuild.SchemeResolver">SchemeResolver</a></code></li><li><code><a href="SchemeResolverWithDependencies.html" class="extype" name="de.tototec.sbuild.SchemeResolverWithDependencies">SchemeResolverWithDependencies</a></code></li><li><code><a href="SetProp$.html" class="extype" name="de.tototec.sbuild.SetProp">SetProp</a></code></li><li><code><a href="Target.html" class="extype" name="de.tototec.sbuild.Target">Target</a></code></li><li><code><a href="TargetContext.html" class="extype" name="de.tototec.sbuild.TargetContext">TargetContext</a></code></li><li><code><a href="TargetRef.html" class="extype" name="de.tototec.sbuild.TargetRef">TargetRef</a></code></li><li><code><a href="TargetRefs.html" class="extype" name="de.tototec.sbuild.TargetRefs">TargetRefs</a></code></li><li><code><a href="version.html" class="extype" name="de.tototec.sbuild.version">@version</a></code></li></ul><p> The following classes are currently experimental or not part of the public API:</p><ul><li><code><a href="ResolveFiles$.html" class="extype" name="de.tototec.sbuild.ResolveFiles">ResolveFiles</a></code></li><li><code><a href="ResolveResult.html" class="extype" name="de.tototec.sbuild.ResolveResult">ResolveResult</a></code></li><li><code><span class="extype" name="ServiceRegistry">ServiceRegistry</span></code></li></ul><p>Classes and objects, not listed above are candidates to change in succeeding releases.
+You are encouraged, to use only the API form above in your build scripts.</p><h4>Default Scheme Handlers</h4><p>The following list of <code><a href="SchemeHandler.html" class="extype" name="de.tototec.sbuild.SchemeHandler">SchemeHandler</a></code> implementations are registered by-default with their default configuration in each SBuild project.
+To register or overwrite a scheme handler in your project, you should use <code><a href="SchemeHandler$.html#apply(scheme:String,handler:de.tototec.sbuild.SchemeHandler)(implicitproject:de.tototec.sbuild.Project):Unit" class="extmbr" name="de.tototec.sbuild.SchemeHandler#apply">SchemeHandler(scheme, handler)</a></code>.</p><ul><li><code><a href="HttpSchemeHandler.html" class="extype" name="de.tototec.sbuild.HttpSchemeHandler">HttpSchemeHandler</a></code></li><li><code><a href="MvnSchemeHandler.html" class="extype" name="de.tototec.sbuild.MvnSchemeHandler">MvnSchemeHandler</a></code></li><li><code><a href="ZipSchemeHandler.html" class="extype" name="de.tototec.sbuild.ZipSchemeHandler">ZipSchemeHandler</a></code></li><li><code><a href="ScanSchemeHandler.html" class="extype" name="de.tototec.sbuild.ScanSchemeHandler">ScanSchemeHandler</a></code></li></ul></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="TargetRefsImplicits.html" class="extype" name="de.tototec.sbuild.TargetRefsImplicits">TargetRefsImplicits</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="de.tototec.sbuild"><span>sbuild</span></li><li class="in" name="de.tototec.sbuild.TargetRefsImplicits"><span>TargetRefsImplicits</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="de.tototec.sbuild.BuildScriptAware" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="BuildScriptAwareextendsAnyRef"></a>
+      <a id="BuildScriptAware:BuildScriptAware"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="BuildScriptAware.html"><span class="name">BuildScriptAware</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.BuildfileCompilationException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BuildfileCompilationExceptionextendsProjectConfigurationException"></a>
+      <a id="BuildfileCompilationException:BuildfileCompilationException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="BuildfileCompilationException.html"><span class="name">BuildfileCompilationException</span></a><span class="result"> extends <a href="ProjectConfigurationException.html" class="extype" name="de.tototec.sbuild.ProjectConfigurationException">ProjectConfigurationException</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Invalid use of SBuild API.</p>
+    </li><li name="de.tototec.sbuild.CacheableSchemeResolver" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CacheableSchemeResolverextendsSchemeResolver"></a>
+      <a id="CacheableSchemeResolver:CacheableSchemeResolver"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CacheableSchemeResolver.html"><span class="name">CacheableSchemeResolver</span></a><span class="result"> extends <a href="SchemeResolver.html" class="extype" name="de.tototec.sbuild.SchemeResolver">SchemeResolver</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.CmdlineMonitor" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CmdlineMonitorextendsAnyRef"></a>
+      <a id="CmdlineMonitor:CmdlineMonitor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CmdlineMonitor.html"><span class="name">CmdlineMonitor</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ExecutionFailedException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExecutionFailedExceptionextendsSBuildException"></a>
+      <a id="ExecutionFailedException:ExecutionFailedException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ExecutionFailedException.html"><span class="name">ExecutionFailedException</span></a><span class="result"> extends <a href="SBuildException.html" class="extype" name="de.tototec.sbuild.SBuildException">SBuildException</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">The execution of an target, which was defined in the project file, failed.</p>
+    </li><li name="de.tototec.sbuild.HttpSchemeHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpSchemeHandlerextendsHttpSchemeHandlerBasewithSchemeResolver"></a>
+      <a id="HttpSchemeHandler:HttpSchemeHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpSchemeHandler.html"><span class="name">HttpSchemeHandler</span></a><span class="result"> extends <a href="HttpSchemeHandlerBase.html" class="extype" name="de.tototec.sbuild.HttpSchemeHandlerBase">HttpSchemeHandlerBase</a> with <a href="SchemeResolver.html" class="extype" name="de.tototec.sbuild.SchemeResolver">SchemeResolver</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">An HTTP-Scheme handler, that will download the given URI into a directory preserving the URI as path.</p>
+    </li><li name="de.tototec.sbuild.HttpSchemeHandlerBase" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HttpSchemeHandlerBaseextendsSchemeHandler"></a>
+      <a id="HttpSchemeHandlerBase:HttpSchemeHandlerBase"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="HttpSchemeHandlerBase.html"><span class="name">HttpSchemeHandlerBase</span></a><span class="result"> extends <a href="SchemeHandler.html" class="extype" name="de.tototec.sbuild.SchemeHandler">SchemeHandler</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.InvalidApiUsageException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="InvalidApiUsageExceptionextendsProjectConfigurationException"></a>
+      <a id="InvalidApiUsageException:InvalidApiUsageException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="InvalidApiUsageException.html"><span class="name">InvalidApiUsageException</span></a><span class="result"> extends <a href="ProjectConfigurationException.html" class="extype" name="de.tototec.sbuild.ProjectConfigurationException">ProjectConfigurationException</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Invalid use of SBuild API.</p>
+    </li><li name="de.tototec.sbuild.InvalidCommandlineException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="InvalidCommandlineExceptionextendsSBuildException"></a>
+      <a id="InvalidCommandlineException:InvalidCommandlineException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="InvalidCommandlineException.html"><span class="name">InvalidCommandlineException</span></a><span class="result"> extends <a href="SBuildException.html" class="extype" name="de.tototec.sbuild.SBuildException">SBuildException</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">An invalid commandline was given.</p>
+    </li><li name="de.tototec.sbuild.Logger" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LoggerextendsSerializable"></a>
+      <a id="Logger:Logger"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Logger.html"><span class="name">Logger</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.MapperSchemeHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MapperSchemeHandlerextendsSchemeHandler"></a>
+      <a id="MapperSchemeHandler:MapperSchemeHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MapperSchemeHandler.html"><span class="name">MapperSchemeHandler</span></a><span class="result"> extends <a href="SchemeHandler.html" class="extype" name="de.tototec.sbuild.SchemeHandler">SchemeHandler</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A MapperSchemeHandler will maintain an mapping from on scheme to another scheme.</p>
+    </li><li name="de.tototec.sbuild.MissingConfigurationException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MissingConfigurationExceptionextendsSBuildException"></a>
+      <a id="MissingConfigurationException:MissingConfigurationException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MissingConfigurationException.html"><span class="name">MissingConfigurationException</span></a><span class="result"> extends <a href="SBuildException.html" class="extype" name="de.tototec.sbuild.SBuildException">SBuildException</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">An required but not-configured property was accessed.</p>
+    </li><li name="de.tototec.sbuild.Module" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ModuleextendsAnyRef"></a>
+      <a id="Module:Module"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Module.html"><span class="name">Module</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.MutableProject" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="MutableProjectextendsProjectBase"></a>
+      <a id="MutableProject:MutableProject"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="MutableProject.html"><span class="name">MutableProject</span></a><span class="result"> extends <a href="ProjectBase.html" class="extype" name="de.tototec.sbuild.ProjectBase">ProjectBase</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.MvnSchemeHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MvnSchemeHandlerextendsSchemeResolver"></a>
+      <a id="MvnSchemeHandler:MvnSchemeHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MvnSchemeHandler.html"><span class="name">MvnSchemeHandler</span></a><span class="result"> extends <a href="SchemeResolver.html" class="extype" name="de.tototec.sbuild.SchemeResolver">SchemeResolver</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A SchemeHandler able to download Maven artifacts from a set of Maven repositories.</p>
+    </li><li name="de.tototec.sbuild.OutputStreamCmdlineMonitor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OutputStreamCmdlineMonitorextendsCmdlineMonitor"></a>
+      <a id="OutputStreamCmdlineMonitor:OutputStreamCmdlineMonitor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="OutputStreamCmdlineMonitor.html"><span class="name">OutputStreamCmdlineMonitor</span></a><span class="result"> extends <a href="CmdlineMonitor.html" class="extype" name="de.tototec.sbuild.CmdlineMonitor">CmdlineMonitor</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.Plugin" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="Plugin[T]extendsAnyRef"></a>
+      <a id="Plugin[T]:Plugin[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Plugin.html"><span class="name">Plugin</span></a><span class="tparams">[<span name="T">T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">An implementation of this trait act as a plugin activator.</p>
+    </li><li name="de.tototec.sbuild.PluginAware" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PluginAwareextendsAnyRef"></a>
+      <a id="PluginAware:PluginAware"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PluginAware.html"><span class="name">PluginAware</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.PluginConfigureAware" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PluginConfigureAware[T]extendsAnyRef"></a>
+      <a id="PluginConfigureAware[T]:PluginConfigureAware[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PluginConfigureAware.html"><span class="name">PluginConfigureAware</span></a><span class="tparams">[<span name="T">T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Plugins that will be notified whenever they get (re-)configured.</p>
+    </li><li name="de.tototec.sbuild.PluginDependency" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PluginDependencyextendsAnyRef"></a>
+      <a id="PluginDependency:PluginDependency"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PluginDependency.html"><span class="name">PluginDependency</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.PluginWithDependencies" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PluginWithDependenciesextendsAnyRef"></a>
+      <a id="PluginWithDependencies:PluginWithDependencies"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PluginWithDependencies.html"><span class="name">PluginWithDependencies</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Plugins that depend on other plugins need to implement this trait.</p>
+    </li><li name="de.tototec.sbuild.Project" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ProjectextendsMutableProjectwithProjectAntSupportwithPluginAware"></a>
+      <a id="Project:Project"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Project.html"><span class="name">Project</span></a><span class="result"> extends <a href="MutableProject.html" class="extype" name="de.tototec.sbuild.MutableProject">MutableProject</a> with <a href="ProjectAntSupport.html" class="extype" name="de.tototec.sbuild.ProjectAntSupport">ProjectAntSupport</a> with <a href="PluginAware.html" class="extype" name="de.tototec.sbuild.PluginAware">PluginAware</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@implicitNotFound</span><span class="args">(<span>
+      
+      <span class="defval" name="&quot;Cannot find an implicit Project, which is required when invoking API designed to run inside an SBuild project script. Please refer to the SBuild manual.&quot;">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="de.tototec.sbuild.ProjectAntSupport" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ProjectAntSupportextendsAnyRef"></a>
+      <a id="ProjectAntSupport:ProjectAntSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ProjectAntSupport.html"><span class="name">ProjectAntSupport</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ProjectBase" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ProjectBaseextendsAnyRef"></a>
+      <a id="ProjectBase:ProjectBase"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ProjectBase.html"><span class="name">ProjectBase</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ProjectConfigurationException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ProjectConfigurationExceptionextendsSBuildException"></a>
+      <a id="ProjectConfigurationException:ProjectConfigurationException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ProjectConfigurationException.html"><span class="name">ProjectConfigurationException</span></a><span class="result"> extends <a href="SBuildException.html" class="extype" name="de.tototec.sbuild.SBuildException">SBuildException</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A error was detected while parsing and/or initializing the project.</p>
+    </li><li name="de.tototec.sbuild.ProjectPool" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ProjectPoolextendsAnyRef"></a>
+      <a id="ProjectPool:ProjectPool"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ProjectPool.html"><span class="name">ProjectPool</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ProjectReader" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ProjectReaderextendsAnyRef"></a>
+      <a id="ProjectReader:ProjectReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ProjectReader.html"><span class="name">ProjectReader</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.RichFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RichFileextendsAnyVal"></a>
+      <a id="RichFile:RichFile"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="RichFile.html"><span class="name">RichFile</span></a><span class="result"> extends <span class="extype" name="scala.AnyVal">AnyVal</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.SBuildException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SBuildExceptionextendsRuntimeExceptionwithBuildScriptAwarewithTargetAware"></a>
+      <a id="SBuildException:SBuildException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SBuildException.html"><span class="name">SBuildException</span></a><span class="result"> extends <span class="extype" name="scala.RuntimeException">RuntimeException</span> with <a href="BuildScriptAware.html" class="extype" name="de.tototec.sbuild.BuildScriptAware">BuildScriptAware</a> with <a href="TargetAware.html" class="extype" name="de.tototec.sbuild.TargetAware">TargetAware</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Common superclass for specific SBuild exceptions.</p>
+    </li><li name="de.tototec.sbuild.ScanSchemeHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScanSchemeHandlerextendsSchemeResolverwithTransparentSchemeResolverwithSideeffectFreeSchemeResolver"></a>
+      <a id="ScanSchemeHandler:ScanSchemeHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ScanSchemeHandler.html"><span class="name">ScanSchemeHandler</span></a><span class="result"> extends <a href="SchemeResolver.html" class="extype" name="de.tototec.sbuild.SchemeResolver">SchemeResolver</a> with <a href="TransparentSchemeResolver.html" class="extype" name="de.tototec.sbuild.TransparentSchemeResolver">TransparentSchemeResolver</a> with <a href="SideeffectFreeSchemeResolver.html" class="extype" name="de.tototec.sbuild.SideeffectFreeSchemeResolver">SideeffectFreeSchemeResolver</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Scans a directory for files, recursiv.</p>
+    </li><li name="de.tototec.sbuild.SchemeHandler" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SchemeHandlerextendsAnyRef"></a>
+      <a id="SchemeHandler:SchemeHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SchemeHandler.html"><span class="name">SchemeHandler</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Translates a target name into another target name
+</p>
+    </li><li name="de.tototec.sbuild.SchemeResolver" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SchemeResolverextendsSchemeHandler"></a>
+      <a id="SchemeResolver:SchemeResolver"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SchemeResolver.html"><span class="name">SchemeResolver</span></a><span class="result"> extends <a href="SchemeHandler.html" class="extype" name="de.tototec.sbuild.SchemeHandler">SchemeHandler</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A SchemeHandler, that also resolves the representing target with a built-in target scheme.</p>
+    </li><li name="de.tototec.sbuild.SchemeResolverWithDependencies" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SchemeResolverWithDependenciesextendsSchemeResolver"></a>
+      <a id="SchemeResolverWithDependencies:SchemeResolverWithDependencies"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SchemeResolverWithDependencies.html"><span class="name">SchemeResolverWithDependencies</span></a><span class="result"> extends <a href="SchemeResolver.html" class="extype" name="de.tototec.sbuild.SchemeResolver">SchemeResolver</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.SideeffectFreeSchemeResolver" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SideeffectFreeSchemeResolverextendsSchemeResolver"></a>
+      <a id="SideeffectFreeSchemeResolver:SideeffectFreeSchemeResolver"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SideeffectFreeSchemeResolver.html"><span class="name">SideeffectFreeSchemeResolver</span></a><span class="result"> extends <a href="SchemeResolver.html" class="extype" name="de.tototec.sbuild.SchemeResolver">SchemeResolver</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">An internal marker interface.</p>
+    </li><li name="de.tototec.sbuild.Target" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TargetextendsAnyRef"></a>
+      <a id="Target:Target"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Target.html"><span class="name">Target</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.TargetAware" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TargetAwareextendsAnyRef"></a>
+      <a id="TargetAware:TargetAware"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TargetAware.html"><span class="name">TargetAware</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.TargetContext" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TargetContextextendsAnyRef"></a>
+      <a id="TargetContext:TargetContext"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TargetContext.html"><span class="name">TargetContext</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">While a target is executed, this trait can be used to get relevant information
+about the current target execution and interact with the executor.</p>
+    </li><li name="de.tototec.sbuild.TargetContextImpl" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TargetContextImplextendsTargetContext"></a>
+      <a id="TargetContextImpl:TargetContextImpl"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="TargetContextImpl.html"><span class="name">TargetContextImpl</span></a><span class="result"> extends <a href="TargetContext.html" class="extype" name="de.tototec.sbuild.TargetContext">TargetContext</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.TargetNameMatcher" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TargetNameMatcherextendsAnyRef"></a>
+      <a id="TargetNameMatcher:TargetNameMatcher"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="TargetNameMatcher.html"><span class="name">TargetNameMatcher</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.TargetNotFoundException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TargetNotFoundExceptionextendsSBuildException"></a>
+      <a id="TargetNotFoundException:TargetNotFoundException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="TargetNotFoundException.html"><span class="name">TargetNotFoundException</span></a><span class="result"> extends <a href="SBuildException.html" class="extype" name="de.tototec.sbuild.SBuildException">SBuildException</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">An unknown target was requested (on command line or as a dependency).</p>
+    </li><li name="de.tototec.sbuild.TargetRef" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TargetRefextendsAnyRef"></a>
+      <a id="TargetRef:TargetRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="TargetRef.html"><span class="name">TargetRef</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.TargetRefs" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TargetRefsextendsAnyRef"></a>
+      <a id="TargetRefs:TargetRefs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="TargetRefs.html"><span class="name">TargetRefs</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.TargetRefsImplicits" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TargetRefsImplicitsextendsAnyRef"></a>
+      <a id="TargetRefsImplicits:TargetRefsImplicits"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TargetRefsImplicits.html"><span class="name">TargetRefsImplicits</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.TransparentSchemeResolver" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TransparentSchemeResolverextendsSchemeResolver"></a>
+      <a id="TransparentSchemeResolver:TransparentSchemeResolver"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TransparentSchemeResolver.html"><span class="name">TransparentSchemeResolver</span></a><span class="result"> extends <a href="SchemeResolver.html" class="extype" name="de.tototec.sbuild.SchemeResolver">SchemeResolver</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">An internal marker interface.</p>
+    </li><li name="de.tototec.sbuild.UniqueTargetFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UniqueTargetFileextendsProductwithSerializable"></a>
+      <a id="UniqueTargetFile:UniqueTargetFile"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="UniqueTargetFile.html"><span class="name">UniqueTargetFile</span></a><span class="params">(<span name="file">file: <span class="extype" name="java.io.File">File</span></span>, <span name="phony">phony: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="handler">handler: <span class="extype" name="scala.Option">Option</span>[<a href="SchemeHandler.html" class="extype" name="de.tototec.sbuild.SchemeHandler">SchemeHandler</a>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.UnsupportedSchemeException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UnsupportedSchemeExceptionextendsSBuildException"></a>
+      <a id="UnsupportedSchemeException:UnsupportedSchemeException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="UnsupportedSchemeException.html"><span class="name">UnsupportedSchemeException</span></a><span class="result"> extends <a href="SBuildException.html" class="extype" name="de.tototec.sbuild.SBuildException">SBuildException</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">An unsupported scheme was used in a target or dependency.</p>
+    </li><li name="de.tototec.sbuild.ZipSchemeHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ZipSchemeHandlerextendsSchemeResolverwithSchemeResolverWithDependencieswithCacheableSchemeResolver"></a>
+      <a id="ZipSchemeHandler:ZipSchemeHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ZipSchemeHandler.html"><span class="name">ZipSchemeHandler</span></a><span class="result"> extends <a href="SchemeResolver.html" class="extype" name="de.tototec.sbuild.SchemeResolver">SchemeResolver</a> with <a href="SchemeResolverWithDependencies.html" class="extype" name="de.tototec.sbuild.SchemeResolverWithDependencies">SchemeResolverWithDependencies</a> with <a href="CacheableSchemeResolver.html" class="extype" name="de.tototec.sbuild.CacheableSchemeResolver">CacheableSchemeResolver</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">The SchemeHandler to extract resources from a ZIP resource.</p>
+    </li><li name="de.tototec.sbuild.classpath" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="classpathextendsAnnotation"></a>
+      <a id="classpath:classpath"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="classpath.html"><span class="name">classpath</span></a><span class="result"> extends <span class="extype" name="scala.annotation.Annotation">Annotation</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Add additional classpath elements (jars, dirs) to the compile and execution environment of the current build file.</p>
+    </li><li name="de.tototec.sbuild.include" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="includeextendsAnnotation"></a>
+      <a id="include:include"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="include.html"><span class="name">include</span></a><span class="result"> extends <span class="extype" name="scala.annotation.Annotation">Annotation</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Include one ore more Scala files to access them from the current project.</p>
+    </li><li name="de.tototec.sbuild.version" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="versionextendsAnnotation"></a>
+      <a id="version:version"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="version.html"><span class="name">version</span></a><span class="result"> extends <span class="extype" name="scala.annotation.Annotation">Annotation</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.OSGiVersion" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OSGiVersionextendsComparable[de.tototec.sbuild.OSGiVersion]"></a>
+      <a id="OSGiVersion:OSGiVersion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="OSGiVersion.html"><span class="name deprecated" title="Deprecated: (Since version 0.6.0.9002) Use internal.OSGiVersion instead">OSGiVersion</span></a><span class="result"> extends <span class="extype" name="java.lang.Comparable">Comparable</span>[<a href="OSGiVersion.html" class="extype" name="de.tototec.sbuild.OSGiVersion">OSGiVersion</a>]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Version identifier for bundles and packages.</p>
+    </li><li name="de.tototec.sbuild.ProjectTarget" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ProjectTarget=de.tototec.sbuild.internal.ProjectTarget"></a>
+      <a id="ProjectTarget:ProjectTarget"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.7.1.9000) Use de.tototec.sbuild.internal.ProjectTarget instead.">ProjectTarget</span><span class="result"> = <a href="internal/ProjectTarget.html" class="extype" name="de.tototec.sbuild.internal.ProjectTarget">sbuild.internal.ProjectTarget</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.7.1.9000)</i> Use de.tototec.sbuild.internal.ProjectTarget instead.</p></dd></dl></div>
+    </li><li name="de.tototec.sbuild.ResolveResult" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ResolveResultextendsProductwithSerializable"></a>
+      <a id="ResolveResult:ResolveResult"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ResolveResult.html"><span class="name deprecated" title="Deprecated: (Since version 0.9.1.9000) No longer in use.">ResolveResult</span></a><span class="params">(<span name="wasUpToDate">wasUpToDate: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="error">error: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Throwable">Throwable</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.9.1.9000)</i> No longer in use.</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="de.tototec.sbuild.CmdlineMonitor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CmdlineMonitor"></a>
+      <a id="CmdlineMonitor:CmdlineMonitor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CmdlineMonitor$.html"><span class="name">CmdlineMonitor</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.Constants" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Constants"></a>
+      <a id="Constants:Constants"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Constants$.html"><span class="name">Constants</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ExportDependencies" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExportDependencies"></a>
+      <a id="ExportDependencies:ExportDependencies"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ExportDependencies$.html"><span class="name">ExportDependencies</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Export dependencies to be consumed by other tools, e.</p>
+    </li><li name="de.tototec.sbuild.Logger" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Logger"></a>
+      <a id="Logger:Logger"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Logger$.html"><span class="name">Logger</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.MavenSupport" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MavenSupport"></a>
+      <a id="MavenSupport:MavenSupport"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MavenSupport$.html"><span class="name">MavenSupport</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.Module" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Module"></a>
+      <a id="Module:Module"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Module$.html"><span class="name">Module</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.Modules" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Modules"></a>
+      <a id="Modules:Modules"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Modules$.html"><span class="name">Modules</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.NoopCmdlineMonitor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NoopCmdlineMonitor"></a>
+      <a id="NoopCmdlineMonitor:NoopCmdlineMonitor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NoopCmdlineMonitor$.html"><span class="name">NoopCmdlineMonitor</span></a><span class="result"> extends <a href="CmdlineMonitor.html" class="extype" name="de.tototec.sbuild.CmdlineMonitor">CmdlineMonitor</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.Path" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Path"></a>
+      <a id="Path:Path"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Path$.html"><span class="name">Path</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Path can be used to produce absolute <span class="extype" name="File">File</span> instances which are relative to the current SBuild project directory
+or the directory containing an included and explicit requested project resource.</p>
+    </li><li name="de.tototec.sbuild.Paths" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Paths"></a>
+      <a id="Paths:Paths"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Paths$.html"><span class="name">Paths</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.Plugin" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Plugin"></a>
+      <a id="Plugin:Plugin"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Plugin$.html"><span class="name">Plugin</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">This object contains useful <code>apply</code> method to activate and access plugin instances.</p>
+    </li><li name="de.tototec.sbuild.PluginDependency" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PluginDependency"></a>
+      <a id="PluginDependency:PluginDependency"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PluginDependency$.html"><span class="name">PluginDependency</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.Prop" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Prop"></a>
+      <a id="Prop:Prop"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Prop$.html"><span class="name">Prop</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.RichFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RichFile"></a>
+      <a id="RichFile:RichFile"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="RichFile$.html"><span class="name">RichFile</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.SBuildVersion" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SBuildVersion"></a>
+      <a id="SBuildVersion:SBuildVersion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SBuildVersion$.html"><span class="name">SBuildVersion</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.SchemeHandler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SchemeHandler"></a>
+      <a id="SchemeHandler:SchemeHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SchemeHandler$.html"><span class="name">SchemeHandler</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Register a SchemeHandler under a scheme qualifier into the current project.</p>
+    </li><li name="de.tototec.sbuild.SetProp" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SetProp"></a>
+      <a id="SetProp:SetProp"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SetProp$.html"><span class="name">SetProp</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.Target" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Target"></a>
+      <a id="Target:Target"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Target$.html"><span class="name">Target</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.TargetNameMatcher" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TargetNameMatcher"></a>
+      <a id="TargetNameMatcher:TargetNameMatcher"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="TargetNameMatcher$.html"><span class="name">TargetNameMatcher</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.TargetRef" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TargetRef"></a>
+      <a id="TargetRef:TargetRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="TargetRef$.html"><span class="name">TargetRef</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.TargetRefs" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TargetRefs"></a>
+      <a id="TargetRefs:TargetRefs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="TargetRefs$.html"><span class="name">TargetRefs</span></a><span class="result"> extends <a href="TargetRefsImplicits.html" class="extype" name="de.tototec.sbuild.TargetRefsImplicits">TargetRefsImplicits</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.execute" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="execute"></a>
+      <a id="execute:execute"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="execute/package.html"><span class="name">execute</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.internal" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="internal"></a>
+      <a id="internal:internal"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="internal/package.html"><span class="name">internal</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.package#toRichFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="toRichFile(file:java.io.File):de.tototec.sbuild.RichFile"></a>
+      <a id="toRichFile(File):RichFile"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toRichFile</span><span class="params">(<span name="file">file: <span class="extype" name="java.io.File">File</span></span>)</span><span class="result">: <a href="RichFile.html" class="extype" name="de.tototec.sbuild.RichFile">RichFile</a></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.TargetRefsImplicits#toTargetRefs_fromFile" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toTargetRefs_fromFile(file:java.io.File)(implicitproject:de.tototec.sbuild.Project):de.tototec.sbuild.TargetRefs"></a>
+      <a id="toTargetRefs_fromFile(File)(Project):TargetRefs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toTargetRefs_fromFile</span><span class="params">(<span name="file">file: <span class="extype" name="java.io.File">File</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="project">project: <a href="Project.html" class="extype" name="de.tototec.sbuild.Project">Project</a></span>)</span><span class="result">: <a href="TargetRefs.html" class="extype" name="de.tototec.sbuild.TargetRefs">TargetRefs</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TargetRefsImplicits.html" class="extype" name="de.tototec.sbuild.TargetRefsImplicits">TargetRefsImplicits</a></dd></dl></div>
+    </li><li name="de.tototec.sbuild.TargetRefsImplicits#toTargetRefs_fromSeq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toTargetRefs_fromSeq(targetRefs:Seq[de.tototec.sbuild.TargetRef]):de.tototec.sbuild.TargetRefs"></a>
+      <a id="toTargetRefs_fromSeq(Seq[TargetRef]):TargetRefs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toTargetRefs_fromSeq</span><span class="params">(<span name="targetRefs">targetRefs: <span class="extype" name="scala.Seq">Seq</span>[<a href="TargetRef.html" class="extype" name="de.tototec.sbuild.TargetRef">TargetRef</a>]</span>)</span><span class="result">: <a href="TargetRefs.html" class="extype" name="de.tototec.sbuild.TargetRefs">TargetRefs</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TargetRefsImplicits.html" class="extype" name="de.tototec.sbuild.TargetRefsImplicits">TargetRefsImplicits</a></dd></dl></div>
+    </li><li name="de.tototec.sbuild.TargetRefsImplicits#toTargetRefs_fromString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toTargetRefs_fromString(string:String)(implicitproject:de.tototec.sbuild.Project):de.tototec.sbuild.TargetRefs"></a>
+      <a id="toTargetRefs_fromString(String)(Project):TargetRefs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toTargetRefs_fromString</span><span class="params">(<span name="string">string: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="project">project: <a href="Project.html" class="extype" name="de.tototec.sbuild.Project">Project</a></span>)</span><span class="result">: <a href="TargetRefs.html" class="extype" name="de.tototec.sbuild.TargetRefs">TargetRefs</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TargetRefsImplicits.html" class="extype" name="de.tototec.sbuild.TargetRefsImplicits">TargetRefsImplicits</a></dd></dl></div>
+    </li><li name="de.tototec.sbuild.TargetRefsImplicits#toTargetRefs_fromTarget" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toTargetRefs_fromTarget(target:de.tototec.sbuild.Target):de.tototec.sbuild.TargetRefs"></a>
+      <a id="toTargetRefs_fromTarget(Target):TargetRefs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toTargetRefs_fromTarget</span><span class="params">(<span name="target">target: <a href="Target.html" class="extype" name="de.tototec.sbuild.Target">Target</a></span>)</span><span class="result">: <a href="TargetRefs.html" class="extype" name="de.tototec.sbuild.TargetRefs">TargetRefs</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TargetRefsImplicits.html" class="extype" name="de.tototec.sbuild.TargetRefsImplicits">TargetRefsImplicits</a></dd></dl></div>
+    </li><li name="de.tototec.sbuild.TargetRefsImplicits#toTargetRefs_fromTargetRef" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toTargetRefs_fromTargetRef(targetRef:de.tototec.sbuild.TargetRef):de.tototec.sbuild.TargetRefs"></a>
+      <a id="toTargetRefs_fromTargetRef(TargetRef):TargetRefs"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toTargetRefs_fromTargetRef</span><span class="params">(<span name="targetRef">targetRef: <a href="TargetRef.html" class="extype" name="de.tototec.sbuild.TargetRef">TargetRef</a></span>)</span><span class="result">: <a href="TargetRefs.html" class="extype" name="de.tototec.sbuild.TargetRefs">TargetRefs</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="TargetRefsImplicits.html" class="extype" name="de.tototec.sbuild.TargetRefsImplicits">TargetRefsImplicits</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Deprecated Value Members</h3>
+              <ol><li name="de.tototec.sbuild.OSGiVersion" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="OSGiVersion"></a>
+      <a id="OSGiVersion:OSGiVersion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="OSGiVersion$.html"><span class="name deprecated" title="Deprecated: (Since version 0.6.0.9002) Use internal.OSGiVersion instead">OSGiVersion</span></a>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.6.0.9002)</i> Use internal.OSGiVersion instead</p></dd></dl></div>
+    </li><li name="de.tototec.sbuild.Pathes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Pathes"></a>
+      <a id="Pathes:Pathes"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Pathes$.html"><span class="name deprecated" title="Deprecated: (Since version 0.4.0.9002) Use Paths instead.">Pathes</span></a>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.4.0.9002)</i> Use Paths instead.</p></dd></dl></div>
+    </li><li name="de.tototec.sbuild.ResolveFiles" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ResolveFiles"></a>
+      <a id="ResolveFiles:ResolveFiles"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ResolveFiles$.html"><span class="name deprecated" title="Deprecated: (Since version 0.6.0.9003) Do not use. Will be replaced by recursive resolve dependencies capabilities in plugins.">ResolveFiles</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">EXPERIMENTAL API - Resolve TargetRefs.</p>
+    </li><li name="de.tototec.sbuild.Util" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Util"></a>
+      <a id="Util:Util"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Util$.html"><span class="name deprecated" title="Deprecated: (Since version 0.6.0.9002) No public API of SBuild.">Util</span></a><span class="result"> extends <a href="internal/Util.html" class="extype" name="de.tototec.sbuild.internal.Util">Util</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">This is not public API of SBuild.</p>
+    </li></ol>
+            </div>
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="de.tototec.sbuild.TargetRefsImplicits">
+              <h3>Inherited from <a href="TargetRefsImplicits.html" class="extype" name="de.tototec.sbuild.TargetRefsImplicits">TargetRefsImplicits</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../lib/template.js"></script>
+    </body>
+      </html>
