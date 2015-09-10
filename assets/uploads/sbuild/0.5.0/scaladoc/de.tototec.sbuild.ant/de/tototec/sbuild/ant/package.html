@@ -1,0 +1,326 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>ant - SBuild Ant Support and Wrappers Reference 0.5.0 - de.tototec.sbuild.ant</title>
+          <meta name="description" content="ant - SBuild Ant Support and Wrappers Reference 0.5.0 - de.tototec.sbuild.ant" />
+          <meta name="keywords" content="ant SBuild Ant Support and Wrappers Reference 0.5.0 de.tototec.sbuild.ant" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'de.tototec.sbuild.ant.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="de">de</a>.<a href="../../package.html" class="extype" name="de.tototec">tototec</a>.<a href="../package.html" class="extype" name="de.tototec.sbuild">sbuild</a></p>
+        <h1>ant</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ant</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><h4>SBuild Ant Support and Ant Wrappers Reference</h4><p>This is the API Reference for SBuild Ant Support and the Ant Wrappers.</p><p>This version is designed to be used with SBuild 0.4.0.</p><p>Project Homepage: <a href="http://sbuild.tototec.de/" target="_blank">http://sbuild.tototec.de/</a></p><p>SBuild Ant Support and Wrappers are released under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License, Version 2.0</a>.</p><h5>How does SBuild's Ant Integration works?</h5><p>SBuild has special support for Apache Ant and it's Ant Tasks.</p><p>From a technical standpoint, Ant tasks are nothing special but Java code and can be therefore very easy integrated into an SBuild build script.
+But, most Ant tasks make use of less or more Ant specific classes and utilities, for which SBuild has special support.</p><p>Ant and SBuild both have a very similar concept of a project.
+Most Ant API, especially the tasks, need a reference to <code><span class="extype" name="org.apache.tools.ant.Project">org.apache.tools.ant.Project</span></code> to function correctly.
+SBuild provides an already configured Ant project implementation: <code><a href="AntProject.html" class="extype" name="de.tototec.sbuild.ant.AntProject">AntProject</a></code>, which ensures well integrated execution of Ant API.
+You can use <code><a href="AntProject$.html#apply()(implicitproject:de.tototec.sbuild.Project):de.tototec.sbuild.ant.AntProject" class="extmbr" name="de.tototec.sbuild.ant.AntProject#apply">AntProject$.apply</a></code> to access an instance of this Ant project, whenever you need an Ant project in your SBuild project.</p><p>All Ant wrappers provided by SBuild already set the <code>AntProject</code> into the wrapped object, when appropriate, so that in most cases, you should not need to use AntProject at all.
+But if you need an Ant project, the <code>AntProject</code> should be set into the class or object in question before any other functionality of that object is used.</p><h5>Wrapped Ant API and tasks</h5><p>To provide a seamless experience, the most needed Ant building blocks have SBuild specific wrappers, which exploit Scala's powerful syntax.
+Those wrappers provide an API which feels almost exactly like the one which is it used in Ant XML.</p><p>The most common Ant utilities are located in <a href="" class="extype" name="de.tototec.sbuild.ant">this</a> package. Wrapped Ant tasks can be found in package <a href="tasks/package.html" class="extype" name="de.tototec.sbuild.ant.tasks">de.tototec.sbuild.ant.tasks</a> and its sub packages.</p><h5>Using Ant API, without a wrapper</h5><p>SBuild only provides Ant wrappers for the most common Ant tasks.
+If you need to use Ant classes which do not have a wrapper for SBuild yet, the following example might help you to understand, how you can use such classes.
+As you will see, it is very simple.</p><p>The <code><a href="tasks/AntDelete.html" class="extype" name="de.tototec.sbuild.ant.tasks.AntDelete">de.tototec.sbuild.ant.tasks.AntDelete</a></code> task is a simple wrapped Ant task, to delete files or directories.
+To write a &quot;clean&quot; target which uses the <code>AntDelete</code> task to delete a directory &quot;target&quot;, you would do it as follows:</p><pre>Target(<span class="lit">"phony:clean"</span>) exec {
+AntDelete(dir = Path(<span class="lit">"target"</span>))
+}</pre><p>As you see, we defined a phony target with the name &quot;clean&quot; which has no dependencies and with will use <code><a href="tasks/AntDelete.html" class="extype" name="de.tototec.sbuild.ant.tasks.AntDelete">de.tototec.sbuild.ant.tasks.AntDelete</a></code> to delete the directory.
+By the use of <code><span class="extype" name="de.tototec.sbuild.Path">de.tototec.sbuild.Path</span></code>, we ensure, that the required <code><span class="extype" name="java.io.File">java.io.File</span></code> is relative to the current project directory.</p><p>But, you can also use the API of the <code><span class="extype" name="org.apache.tools.ant.taskdefs.Delete">org.apache.tools.ant.taskdefs.Delete</span></code> task directly, e.g. like this:</p><pre>Target(<span class="lit">"phony:clean"</span>) exec {
+<span class="kw">new</span> org.apache.tools.taskdefs.Delete() {
+  setProject(AntProject())
+  setDir(Path(<span class="lit">"target"</span>))
+}.execute
+}</pre><p>First, we set the SBuild-specific Ant project instance <code><a href="AntProject.html" class="extype" name="de.tototec.sbuild.ant.AntProject">AntProject</a></code> into the newly created instance of <code>Delete</code>.
+To actually run the task, we need to call the <code>execute</code> method.</p><p>In the example above we inherited the <code>Delete</code> task, but this is of course not necessary.
+You could also write it in a more Java fashioned style:</p><pre>Target(<span class="lit">"phony:clean"</span>) exec {
+<span class="kw">val</span> delete = <span class="kw">new</span> org.apache.tools.taskdefs.Delete()
+delete.etProject(AntProject())
+delete.setDir(Path(<span class="lit">"target"</span>))
+delete.execute
+}</pre><h5>How to write your own wrappers</h5><p>All Ant wrappers are normal scala classes that wrap the Ant task by inheriting them.
+Each wrapper should have an constructor with named parameters, and each of these parameters should have an default argument,
+so that is is always possible to set only the wanted attributes and leave the others out.
+To execute the wrapper, the <code>execute</code> method must be called.
+Per convention the <code>execute</code> method should only be called once in the lifecycle on an task.</p><p>In the majority of cases, setting only a small set of attributes a tasks supports, is enough.
+To make this common case even more easy to write, wrapper classes provide  a companion object with an <code>apply</code> method,
+which should have exactly the same parameters (and default arguments) as the class constructor.
+It will create an instance of the task and <b>immediatly</b> invokes the execute method of that task.
+Those <code>apply</code> methods should not return the task instance.</p><p>The result, when using the companion object <code>apply</code> method is an even more compact notation, were you can leave out the <code>new</code> and the <code>execute</code>.</p><p>Whenever you need to configure the tasks in a more complex way, you can simply re-add the &quot;new&quot; and invoke the <code>execute</code> method after you are done with configuring the tasks.
+</p></div><dl class="attributes block"> <dt>Version</dt><dd><p>0.4.0
+</p></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="de.tototec.sbuild.ant"><span>ant</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="de.tototec.sbuild.ant.AntFileList" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntFileListextendsFileList"></a>
+      <a id="AntFileList:AntFileList"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="AntFileList.html"><span class="name">AntFileList</span></a><span class="result"> extends <span class="extype" name="org.apache.tools.ant.types.FileList">FileList</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ant.AntFileSet" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntFileSetextendsFileSet"></a>
+      <a id="AntFileSet:AntFileSet"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="AntFileSet.html"><span class="name">AntFileSet</span></a><span class="result"> extends <span class="extype" name="org.apache.tools.ant.types.FileSet">FileSet</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ant.AntPath" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntPathextendsPath"></a>
+      <a id="AntPath:AntPath"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="AntPath.html"><span class="name">AntPath</span></a><span class="result"> extends <span class="extype" name="org.apache.tools.ant.types.Path">org.apache.tools.ant.types.Path</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ant.AntProject" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntProjectextendsProject"></a>
+      <a id="AntProject:AntProject"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="AntProject.html"><span class="name">AntProject</span></a><span class="result"> extends <span class="extype" name="org.apache.tools.ant.Project">org.apache.tools.ant.Project</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">SBuild specific implementation of Ant's project (<span class="extype" name="org.apache.tools.ant.Project">org.apache.tools.ant.Project</span>).</p>
+    </li><li name="de.tototec.sbuild.ant.AntService" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntServiceextendsService"></a>
+      <a id="AntService:AntService"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="AntService.html"><span class="name">AntService</span></a><span class="result"> extends <span class="extype" name="org.apache.tools.ant.types.spi.Service">Service</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ant.AntZipFileSet" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntZipFileSetextendsZipFileSet"></a>
+      <a id="AntZipFileSet:AntZipFileSet"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="AntZipFileSet.html"><span class="name">AntZipFileSet</span></a><span class="result"> extends <span class="extype" name="org.apache.tools.ant.types.ZipFileSet">ZipFileSet</span></span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="de.tototec.sbuild.ant.AntFileList" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntFileList"></a>
+      <a id="AntFileList:AntFileList"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="AntFileList$.html"><span class="name">AntFileList</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ant.AntFileSet" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntFileSet"></a>
+      <a id="AntFileSet:AntFileSet"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="AntFileSet$.html"><span class="name">AntFileSet</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ant.AntPath" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntPath"></a>
+      <a id="AntPath:AntPath"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="AntPath$.html"><span class="name">AntPath</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ant.AntProject" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntProject"></a>
+      <a id="AntProject:AntProject"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="AntProject$.html"><span class="name">AntProject</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object for <a href="AntProject.html" class="extype" name="de.tototec.sbuild.ant.AntProject">AntProject</a>,
+SBuild implementation to be used in conjunction with Ant specific API like Ant tasks.</p>
+    </li><li name="de.tototec.sbuild.ant.AntService" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntService"></a>
+      <a id="AntService:AntService"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="AntService$.html"><span class="name">AntService</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ant.AntZipFileSet" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AntZipFileSet"></a>
+      <a id="AntZipFileSet:AntZipFileSet"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="AntZipFileSet$.html"><span class="name">AntZipFileSet</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="de.tototec.sbuild.ant.tasks" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="tasks"></a>
+      <a id="tasks:tasks"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a href="tasks/package.html"><span class="name">tasks</span></a>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../lib/template.js"></script>
+    </body>
+      </html>
